@@ -1,0 +1,14 @@
+.form-field-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-container label {
+  font-size: 14px;
+}
+
+.form-field-container input {
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #474747;
+}
