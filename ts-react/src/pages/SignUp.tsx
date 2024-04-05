@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./SignUp.css";
-import { EmailField } from "../components/EmailField.jsx";
-import { PasswordField } from "../components/PasswordField.jsx";
+import { InputField } from "../components/InputField.js";
 import { Title } from "../components/Title";
 import { Button } from "../components/Button";
 import { translateError } from "../utils/translateError.js";
@@ -39,15 +38,17 @@ export const SignUp = () => {
         <Title>Sign up with email</Title>
         <p>Enter your email address to create an account.</p>
 
-        <EmailField
+        <InputField
           id="email"
           labelText="Your email"
+          type="email"
           value={email}
           onChange={setEmail}
         />
-        <PasswordField
+        <InputField
           id="password"
           labelText="Your password"
+          type="password"
           value={password}
           onChange={setPassword}
         />
