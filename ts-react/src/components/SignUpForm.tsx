@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { InputField } from "../components/InputField.js";
 import { Title } from "../components/Title";
 import { Button } from "../components/Button";
-import { translateError } from "../utils/translateError.js";
 import { useNavigate } from "react-router-dom";
 import { SignUpUseCase } from "../UseCases/SignUpUseCase";
+import { ErrorMessage } from "./ErrorMessage.js";
 
 export const SignUpForm = () => {
   const useCase = new SignUpUseCase();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     setErrorMessage(null);
@@ -48,7 +48,7 @@ export const SignUpForm = () => {
         value={password}
         onChange={setPassword}
       />
-      {errorMessage && <p>{translateError(errorMessage)}</p>}
+      <ErrorMessage message={errorMessage} />
       <Button title="Signup" />
     </form>
   );
