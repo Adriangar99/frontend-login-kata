@@ -6,8 +6,10 @@ import { Title } from "../components/Title";
 import { Button } from "../components/Button";
 import { translateError } from "../utils/translateError.js";
 import { useNavigate } from "react-router-dom";
+import { SignUpUseCase } from "../UseCases/SignUpUseCase";
 
 export const SignUp = () => {
+  const useCase = new SignUpUseCase();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,19 +26,8 @@ export const SignUp = () => {
         onSubmit={(event) => {
           event.preventDefault();
 
-          fetch("https://backend-login-placeholder.deno.dev/api/users", {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.status === "error") {
-                throw new Error(data.code);
-              }
-            })
+          useCase
+            .execute({ email, password })
             .then(() => {
               navigate("/success");
             })
